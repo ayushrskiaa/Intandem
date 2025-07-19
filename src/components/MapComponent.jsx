@@ -64,23 +64,6 @@ const MapComponent = () => {
       }
     }
 
-    if (stoppageStartTime) {
-      const lastDataPoint = data[data.length - 1];
-      stoppageEndTime = lastDataPoint.eventGeneratedTime;
-      const stoppageDuration =
-        (stoppageEndTime - stoppageStartTime) / (1000 * 60);
-      if (stoppageDuration >= stoppageThreshold) {
-        const stoppage = {
-          latitude: lastDataPoint.latitude,
-          longitude: lastDataPoint.longitude,
-          startTime: stoppageStartTime,
-          endTime: stoppageEndTime,
-          duration: stoppageDuration,
-        };
-        stoppageLocations.push(stoppage);
-      }
-    }
-
     const pathCoordinates = data.map((data) =>
       fromLonLat([data.longitude, data.latitude])
     );
@@ -91,8 +74,8 @@ const MapComponent = () => {
     lineFeature.setStyle(
       new Style({
         stroke: new Stroke({
-          color: "black",
-          width: 2,
+          color: "red",
+          width: 3,
         }),
       })
     );
@@ -114,11 +97,11 @@ const MapComponent = () => {
           image: new CircleStyle({
             radius: 6,
             stroke: new Stroke({
-              color: "red",
+              color: "black",
               width: 2,
             }),
             fill: new Fill({
-              color: "red",
+              color: "white",
             }),
           }),
         })
@@ -132,15 +115,13 @@ const MapComponent = () => {
       }),
     });
 
-    // Remove previous event listeners to avoid duplicates
     mapRef.current.onclick = null;
 
-    // Use OpenLayers map click event
     const handleMapClick = (event) => {
       map.forEachFeatureAtPixel(map.getEventPixel(event), (feature) => {
         const stoppageData = feature.get("stoppageData");
         if (stoppageData) {
-          setSelectedStoppage(stoppageData); // Set selected stoppage
+          setSelectedStoppage(stoppageData); 
         }
       });
     };
@@ -175,20 +156,19 @@ const MapComponent = () => {
   }, [data, stoppageThreshold]);
 
   const handleThresholdValue = (e) => {
-    setStoppageThreshold(parseInt(e.target.value, 10));
+    setStoppageThreshold(e.target.value, 10);
   };
 
-  // Helper to close the info box
   const closeInfoBox = () => setSelectedStoppage(null);
 
   return (
     <>
       <div className="userDefinedThreshold">
         <label htmlFor="threshold">
-         Enter stoppage threshold
-          (in minutes):
+          Enter stoppage threshold (in minutes):
         </label>
-        <input className="thresholdInput"
+        <input
+          className="thresholdInput"
           id="threshold"
           type="number"
           min={0}
@@ -198,12 +178,9 @@ const MapComponent = () => {
       </div>
       <div ref={mapRef} className="mapContainer"></div>
       {selectedStoppage && (
-        <div
-          className="stoppage-info-box"
-          
-        >
-          <button className="close-button"
-            
+        <div className="stoppage-info-box">
+          <button
+            className="close-button"
             onClick={closeInfoBox}
             aria-label="Close"
           >
