@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+
+.title-main {
+    width: 100%;
+    /* padding: 20px; */
+    text-align: center;
+    background-color: #2fa25b;
+    border: 2px;
+    height: 695px;
+    color: rgb(0, 0, 0);
+}
+.title {
+    width: 100%;
+    font-size: 30px;
+    color: rgb(0, 0, 0);
+    background-color: #fff700;
+    font-weight: bold;          
+    margin: 0;
+    padding: 20px;
+}
+.thresholdInput{
+    color: rgb(213, 11, 11);
+    background-color: #ffffff;
+    border: #222 solid 2px;
+    border-radius: 12px;
+}
+.container{
+    width: 100%;
+    padding: 10px;
+}
+
+.containerHeading{
+    text-align: center;
+    padding: 5px 15px;
+    font-size: 30px;
+}
+.mapContainer{
+    width: 90%;
+    height: calc(100vh - 150px);
+    margin: 5px auto;
+    border: 5px solid #ffffff;
+    overflow: hidden;
+    position: relative; 
+}
+
+
+.userDefinedThreshold{
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large; 
+}
+
+#threshold{
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    width: 50px;
+    height: 40px;
+}
+
+.vehicle-stoppage-visualization {
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.vehicle-stoppage-visualization:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+h3 {
+    font-size: 18px;
+    color: #777;
+    margin-bottom: 6px;
+}
+
+p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+ul li {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+ul li strong {
+    color: #222;
+}
+
+
+.stoppage-info-box {
+    position: absolute;
+    top: 80px;
+    right: 40px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    cursor: pointer;
+}
